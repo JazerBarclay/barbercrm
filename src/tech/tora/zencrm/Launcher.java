@@ -9,6 +9,9 @@ import java.sql.Statement;
 
 import org.apache.derby.tools.sysinfo;
 
+import tech.tora.zencrm.db.DerbyDB;
+import tech.tora.zencrm.db.InitDB;
+
 public class Launcher {
 
 	private static String databaseName = "zendb";
@@ -18,8 +21,8 @@ public class Launcher {
 	//	private static String JDBC_URL = "jdbc:derby:myDB;create=true;user=me;password=mine";
 
 	private static Connection conn = null;
-
-	public Launcher() {
+	
+	public void flatTest() {
 		System.out.println("Hello World! Zen CRM here");
 
 		try {
@@ -47,15 +50,80 @@ public class Launcher {
 				}
 			}
 
-			if (statement != null) {statement.close();}
-
-			if (conn != null) {conn.close();}
+			if (statement != null) statement.close();
+			if (conn != null) conn.close();
 
 		} catch (Exception except) {
 			except.printStackTrace();
 		}
 	}
 
+	public void dbClassTest() {
+
+		new InitDB(databaseName);
+		
+		try {
+			DerbyDB db = new DerbyDB(databaseName);
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+//		try {
+//			db.createTable("CREATE TABLE customers(customer_id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), first_name varchar(30), last_name varchar(30))");
+//		} catch (SQLException e) {
+//			if( e.getErrorCode() == 30000 ) {
+//				System.out.println("Table CUSTOMERS exists...");
+//		    } else {
+//				System.err.println("Failed to create table CUSTOMERS");
+//				e.printStackTrace();
+//				System.out.println(e.getErrorCode());
+//		    }
+//		} catch (ClassNotFoundException e) {
+//			e.printStackTrace();
+//		}
+//		
+//		try {
+//			db.insert("INSERT INTO customers(first_name, last_name) VALUES ('Jazer', 'Barclay')");
+//		} catch (ClassNotFoundException | SQLException e) {
+//			System.err.println("Failed to insert JAZER BARCLAY into CUSTOMERS");
+//			e.printStackTrace();
+//		}
+//		
+//		try {
+//			ResultSet rs = db.select("SELECT * FROM customers");
+//			ResultSetMetaData rsmd = rs.getMetaData();
+//
+//			int colCount = rsmd.getColumnCount();
+//			for (int i = 1; i <= colCount; i++) {
+//				System.out.format("%20s", rsmd.getColumnName(i) + " | ");
+//			}
+//
+//			while (rs.next()) {
+//				System.out.println();
+//				for (int i = 1; i <= colCount; i++) {
+//					System.out.format("%20s", rs.getString(i) + " | ");
+//				}
+//			}
+//			
+//		} catch (ClassNotFoundException | SQLException e) {
+//			System.err.println("Failed to list SELECT results");
+//			e.printStackTrace();
+//		}
+//		
+//		try {
+//			db.close();
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+		
+	}
+	
+	
+	public Launcher() {
+		dbClassTest();
+	}
 
 	public static void main(String[] args) {
 		new Launcher();
