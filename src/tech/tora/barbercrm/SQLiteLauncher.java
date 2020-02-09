@@ -1,4 +1,4 @@
-package tech.tora.zencrm;
+package tech.tora.barbercrm;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

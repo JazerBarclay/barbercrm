@@ -1,4 +1,4 @@
-package tech.tora.zencrm;
+package tech.tora.barbercrm.widgets;
 
 public class Haircut {
 

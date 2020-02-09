@@ -1,4 +1,4 @@
-package tech.tora.zencrm.db;
+package tech.tora.tools.database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
