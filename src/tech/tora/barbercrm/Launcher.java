@@ -4,21 +4,17 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import tech.tora.barbercrm.db.CompanyDB;
+import tech.tora.barbercrm.widgets.Customer;
 
 public class Launcher {
 	
 	private boolean initLookAndFeel() {
+		// Set look and feel
 		try {
-			UIManager.setLookAndFeel(
-					UIManager.getSystemLookAndFeelClassName());
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 			return true;
-		} catch (UnsupportedLookAndFeelException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+				| UnsupportedLookAndFeelException e) {
 			e.printStackTrace();
 		}
 		return false;
@@ -48,8 +44,16 @@ public class Launcher {
 		db.listCustomerTypes();
 		db.listHaircutTypes();
 		
+		Customer customer = new Customer();
+		customer.setFirstName("John");
+		customer.setLastName("Barclay");
+		
+		customer = db.addCustomer(customer);
+		
+		db.listCustomers();
+		
 		// Launch home screen
-		new CoreFrame();
+		new CoreFrame().setVisible(true);
 	}
 
 	public static void main(String[] args) {

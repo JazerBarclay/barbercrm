@@ -31,7 +31,6 @@ public class CompanyDB {
 	public void addHaircutType(HaircutType type) {
 		try {
 			db.insert("INSERT INTO haircut_types (haircut_type_name) (SELECT '"+type.name()+"' FROM haircut_types WHERE haircut_type_name = '"+type.name()+"'HAVING count(*)=0)");
-			System.out.println("Added to haircut types " + type.name());
 		} catch (ClassNotFoundException | SQLException e) {
 			System.err.println("Failed to add haircut type " + type.name());
 			System.err.println(((SQLException)e).getSQLState());
@@ -47,11 +46,12 @@ public class CompanyDB {
 			ResultSet res = db.select("SELECT * FROM haircut_types");
 			ResultSetMetaData rs = res.getMetaData();
 
-			int colCount = rs.getColumnCount();
-
-			System.out.println();
-			for (int i = 1; i <= colCount; i++) System.out.format("%26s", rs.getColumnName(i) + " | ");
-			while (res.next()) { System.out.println(); for (int i = 1; i <= colCount; i++) System.out.format("%26s", res.getString(i) + " | "); }
+			System.out.print("\n| ");
+			for (int i = 1; i <= rs.getColumnCount(); i++) System.out.format("%26s", rs.getColumnName(i) + " | ");
+			while (res.next()) { 
+				System.out.print("\n| ");
+				for (int i = 1; i <= rs.getColumnCount(); i++) System.out.format("%26s", res.getString(i) + " | ");
+			}
 			System.out.println();
 			
 		} catch (ClassNotFoundException | SQLException e) {
@@ -66,7 +66,6 @@ public class CompanyDB {
 	public void addCustomerTypes(CustomerType type) {
 		try {
 			db.insert("INSERT INTO customer_types (customer_type_name) (SELECT '"+type.name()+"' FROM customer_types WHERE customer_type_name = '"+type.name()+"'HAVING count(*)=0)");
-			System.out.println("Added to customer types " + type.name());
 		} catch (ClassNotFoundException | SQLException e) {
 			System.err.println("Failed to add customer type " + type.name());
 			System.err.println(((SQLException)e).getSQLState());
@@ -82,11 +81,12 @@ public class CompanyDB {
 			ResultSet res = db.select("SELECT * FROM customer_types");
 			ResultSetMetaData rs = res.getMetaData();
 
-			System.out.println();
-			int colCount = rs.getColumnCount();
-			for (int i = 1; i <= colCount; i++) System.out.format("%26s", rs.getColumnName(i) + " | ");
-			while (res.next()) { System.out.println(); for (int i = 1; i <= colCount; i++) System.out.format("%26s", res.getString(i) + " | "); }
-
+			System.out.print("\n| ");
+			for (int i = 1; i <= rs.getColumnCount(); i++) System.out.format("%26s", rs.getColumnName(i) + " | ");
+			while (res.next()) {
+				System.out.print("\n| ");
+				for (int i = 1; i <= rs.getColumnCount(); i++) System.out.format("%26s", res.getString(i) + " | ");
+			}
 			System.out.println();
 			
 		} catch (ClassNotFoundException | SQLException e) {
@@ -99,7 +99,7 @@ public class CompanyDB {
 	 * Insert a new customer into the database
 	 * @param customer - New Customer Record 
 	 */
-	public void addCustomer(Customer customer) {
+	public Customer addCustomer(Customer customer) {
 		try {
 			db.insert("INSERT INTO customers (first_name, last_name) VALUES ('"+customer.getFirstName()+"', '"+customer.getLastName()+"')");
 			System.out.println("// Added customer " + customer.getFirstName() + " " + customer.getLastName());
@@ -107,14 +107,43 @@ public class CompanyDB {
 			System.err.println("// Failed to add customer " + customer.getFirstName() + " " + customer.getLastName());
 			e.printStackTrace();
 		}
+	
+		try {
+			ResultSet res = db.select("SELECT * FROM customers WHERE first_name = '"+ customer.getFirstName() +"' AND last_name = '"+ customer.getLastName() +"' ORDER BY customer_id DESC");
+
+			customer = new Customer();
+
+			res.next();
+				customer.setID(Integer.parseInt(res.getString(1)));
+				customer.setFirstName(res.getString(2));
+				customer.setLastName(res.getString(3));
+
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return customer;
 	}
 
 	/**
-	 * Returns a list of all customers in the database
-	 * @return
+	 * Prints all customer types to terminal
 	 */
-	public Customer[] getAllCustomers() {
-		return null;
+	public void listCustomers() {
+		try {
+			ResultSet res = db.select("SELECT * FROM customers");
+			ResultSetMetaData rs = res.getMetaData();
+
+			System.out.print("\n| ");
+			for (int i = 1; i <= rs.getColumnCount(); i++) System.out.format("%22s", rs.getColumnName(i) + " | ");
+			while (res.next()) {
+				System.out.print("\n| ");
+				for (int i = 1; i <= rs.getColumnCount(); i++) System.out.format("%22s", res.getString(i) + " | ");
+			}
+			System.out.println();
+			
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
