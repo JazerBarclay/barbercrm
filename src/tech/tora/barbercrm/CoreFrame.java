@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -41,94 +42,56 @@ public class CoreFrame extends AdvancedFrame {
 		
 //		JLabel thumb = new JLabel(new ImageIcon(System.getProperty("user.dir").toString() + "/res/logo1.png"));
 
-		
-		
-		JLabel titleLabel = new JLabel("Sidley Street Barbers", SwingConstants.CENTER);
-		titleLabel.setFont(new Font("serif", Font.PLAIN, 28));
-		titleLabel.setBorder(new EmptyBorder(0, 20, 0, 20));
-		topPanel.add(titleLabel);
-
-		JPanel centerPanel = new JPanel(new BorderLayout());
+		JPanel centerPanel = new JPanel(new GridLayout(2,2,20,20));
+		centerPanel.setBorder(new EmptyBorder(20, 20, 20, 20));
 
 		JPanel botPanel = new JPanel(new BorderLayout());
 		botPanel.setMinimumSize(new Dimension(Integer.MAX_VALUE, 40));
 		botPanel.setPreferredSize(new Dimension(Integer.MAX_VALUE, 40));
 		botPanel.setBackground(Color.LIGHT_GRAY);
 		botPanel.setBorder(new EmptyBorder(8, 5, 8, 5));
-
-		JPanel p1 = new JPanel(new BorderLayout());
-		p1.setBackground(Color.LIGHT_GRAY);
-		p1.setMinimumSize(new Dimension(Integer.MAX_VALUE, 40));
-		p1.setPreferredSize(new Dimension(Integer.MAX_VALUE, 40));
-		p1.setBorder(new EmptyBorder(5, 5, 5, 5));
-
-		JPanel p2 = new JPanel(new BorderLayout());
-		p2.setBackground(Color.DARK_GRAY);
-
-		JPanel itemPanel = new JPanel(new BorderLayout());
-		itemPanel.setBackground(Color.LIGHT_GRAY);
-		
-		JPanel pricePanel = new JPanel(new BorderLayout());
-		pricePanel.setBackground(Color.LIGHT_GRAY);
-		
-		JPanel totalPricePanel = new JPanel(new BorderLayout());
-		totalPricePanel.setBackground(Color.LIGHT_GRAY);
 		
 		// Items
-//		JLabel itemLabel = new JLabel("Item / Job: ");
-//		JTextField txtItem = new JTextField();
-//		JLabel priceLabel = new JLabel("Price: ");
-//		JCurrencyField price = new JCurrencyField(9);
-		Inventorylist list = new Inventorylist();
-//		JLabel totalCost = new JLabel("Total:  £0.00", SwingConstants.RIGHT);
+		
+		JLabel titleLabel = new JLabel("Sidley Street Barbers", SwingConstants.CENTER);
+		titleLabel.setFont(new Font("serif", Font.PLAIN, 28));
+		titleLabel.setBorder(new EmptyBorder(0, 20, 0, 20));
+		
+		JPanel btn1 = new JPanel(new BorderLayout());
+		btn1.setBackground(new Color(230,230,230));
+		JLabel lbl1 = new JLabel("Add Haircut", SwingConstants.CENTER);
+		lbl1.setFont(new Font("serif", Font.PLAIN, 18));
+		btn1.add(lbl1, BorderLayout.CENTER);
+		
+		JPanel btn2 = new JPanel(new BorderLayout());
+		btn2.setBackground(new Color(230,230,230));
+		JLabel lbl2 = new JLabel("Add Customer", SwingConstants.CENTER);
+		lbl2.setFont(new Font("serif", Font.PLAIN, 18));
+		btn2.add(lbl2, BorderLayout.CENTER);
+		
+		JPanel btn3 = new JPanel(new BorderLayout());
+		btn3.setBackground(new Color(230,230,230));
+		JLabel lbl3 = new JLabel("View Customers", SwingConstants.CENTER);
+		lbl3.setFont(new Font("serif", Font.PLAIN, 18));
+		btn3.add(lbl3, BorderLayout.CENTER);
+		
+		JPanel btn4 = new JPanel(new BorderLayout());
+		btn4.setBackground(new Color(230,230,230));
+		JLabel lbl4 = new JLabel("Admin", SwingConstants.CENTER);
+		lbl4.setFont(new Font("serif", Font.PLAIN, 18));
+		btn4.add(lbl4, BorderLayout.CENTER);
 
-//		itemLabel.setBorder(new EmptyBorder(0,5,0,3));
-//		priceLabel.setBorder(new EmptyBorder(0,5,0,3));
-//
-//		txtItem.setSize(new Dimension(300, 20));
-//		txtItem.setPreferredSize(new Dimension(300, 20));
-//		txtItem.setMinimumSize(new Dimension(300, 20));
-//		txtItem.setMaximumSize(new Dimension(300, 20));
-//		txtItem.addKeyListener(new KeyListener() {
-//
-//			@Override
-//			public void keyTyped(KeyEvent e) {}
-//
-//			@Override
-//			public void keyReleased(KeyEvent e) {}
-//
-//			@Override
-//			public void keyPressed(KeyEvent e) {
-//				if (e.getKeyCode()==KeyEvent.VK_ENTER){
-//					price.requestFocus();
-//				}
-//			}
-//		});
-//
-//		totalCost.setBorder(new EmptyBorder(2,2,2,2));
-//		totalCost.setPreferredSize(new Dimension(140, 20));
-//		totalCost.setMaximumSize(new Dimension(140, 20));
-
+		
 		rootPane.add(topPanel, BorderLayout.NORTH);
 		rootPane.add(centerPanel, BorderLayout.CENTER);
 		rootPane.add(botPanel, BorderLayout.SOUTH);
 
-		centerPanel.add(p1, BorderLayout.NORTH);
-		centerPanel.add(p2, BorderLayout.CENTER);
+		centerPanel.add(btn1);
+		centerPanel.add(btn2);
+		centerPanel.add(btn3);
+		centerPanel.add(btn4);
 
-		p1.add(itemPanel, BorderLayout.CENTER);
-		p1.add(pricePanel, BorderLayout.EAST);
-		p2.add(list.getDisplayPanel());
-		
-		botPanel.add(totalPricePanel, BorderLayout.EAST);
-
-//		itemPanel.add(itemLabel, BorderLayout.WEST);
-//		itemPanel.add(txtItem, BorderLayout.CENTER);
-//
-//		pricePanel.add(priceLabel, BorderLayout.WEST);
-//		pricePanel.add(price, BorderLayout.CENTER);
-//		
-//		totalPricePanel.add(totalCost, BorderLayout.CENTER);
+		topPanel.add(titleLabel);
 
 
 		setSize(800, 600);
