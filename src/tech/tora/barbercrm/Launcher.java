@@ -1,10 +1,14 @@
 package tech.tora.barbercrm;
 
+import java.sql.SQLException;
+
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
+import jdk.jfr.internal.LogLevel;
 import tech.tora.barbercrm.db.CompanyDB;
 import tech.tora.barbercrm.widgets.Customer;
+import tech.tora.tools.system.Logging;
 
 public class Launcher {
 	
@@ -38,17 +42,27 @@ public class Launcher {
 		
 		// Connect to db and test all tables and fields
 		CompanyDB db = new CompanyDB();
+		try {
+			db.open();
+		} catch (ClassNotFoundException | SQLException e) {
+			
+			if (((SQLException)e).getSQLState().equals("XJ040")) {
+				Logging.errorMessage(2, null, "Database In Use", "It appears this application is already open.\nPlease close any other copies of this application and try again.");
+				System.exit(2);
+			}
+			e.printStackTrace();
+		}
+		
 		db.testDBTables();
 		db.initDefaultTables();
 		
 		db.listCustomerTypes();
 		db.listHaircutTypes();
 		
-		Customer customer = new Customer();
-		customer.setFirstName("John");
-		customer.setLastName("Barclay");
-		
-		customer = db.addCustomer(customer);
+//		Customer customer = new Customer();
+//		customer.setFirstName("John");
+//		customer.setLastName("Barclay");
+//		customer = db.addCustomer(customer);
 		
 		db.listCustomers();
 		

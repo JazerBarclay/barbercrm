@@ -21,7 +21,7 @@ public class CompanyDB {
 	 * @author Jazer
 	 */
 	public CompanyDB() {
-		db = openDB(companyName+"DB");
+//		db = openDB(companyName+"DB");
 	}
 
 	/**
@@ -184,20 +184,16 @@ public class CompanyDB {
 	}
 
 	/**
-	 * Creates a new connection to the database with the given name
+	 * Creates a new connection to the database
 	 * 
-	 * @param dbName - Name of the database
 	 * @return Database connection
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
 	 */
-	private DerbyDB openDB(String dbName) {
+	public DerbyDB open() throws ClassNotFoundException, SQLException {
 		DerbyDB database = null;
-		try {
-			database = new DerbyDB(dbName);
-		} catch (ClassNotFoundException e1) {
-			e1.printStackTrace();
-		} catch (SQLException e1) {
-			e1.printStackTrace();
-		}
+		database = new DerbyDB(companyName + "DB");
+		db = database;
 		return database;
 	}
 

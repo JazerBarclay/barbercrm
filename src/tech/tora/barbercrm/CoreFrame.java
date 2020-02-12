@@ -7,22 +7,20 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
-import javax.swing.ImageIcon;
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-import tech.tora.tools.swing.field.JCurrencyField;
+import tech.tora.barbercrm.screens.AddHaircut;
 import tech.tora.tools.swing.frame.AdvancedFrame;
-import tech.tora.tools.swing.list.Inventorylist;
 
 public class CoreFrame extends AdvancedFrame {
 
@@ -37,8 +35,8 @@ public class CoreFrame extends AdvancedFrame {
 
 		JPanel topPanel = new JPanel(new BorderLayout());
 		topPanel.setBackground(Color.GRAY);
-		topPanel.setMinimumSize(new Dimension(Integer.MAX_VALUE, 80));
-		topPanel.setPreferredSize(new Dimension(Integer.MAX_VALUE, 80));
+		topPanel.setMinimumSize(new Dimension(Integer.MAX_VALUE,120));
+		topPanel.setPreferredSize(new Dimension(Integer.MAX_VALUE, 120));
 		
 //		JLabel thumb = new JLabel(new ImageIcon(System.getProperty("user.dir").toString() + "/res/logo1.png"));
 
@@ -54,31 +52,119 @@ public class CoreFrame extends AdvancedFrame {
 		// Items
 		
 		JLabel titleLabel = new JLabel("Sidley Street Barbers", SwingConstants.CENTER);
-		titleLabel.setFont(new Font("serif", Font.PLAIN, 28));
+		titleLabel.setFont(new Font("Arial", Font.PLAIN, 32));
 		titleLabel.setBorder(new EmptyBorder(0, 20, 0, 20));
 		
 		JPanel btn1 = new JPanel(new BorderLayout());
 		btn1.setBackground(new Color(230,230,230));
+		btn1.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
+		btn1.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {btn1.setBackground(new Color(230, 230, 230));}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {btn1.setBackground(new Color(200, 200, 200));}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				System.out.println("Clicked BTN_1");
+				
+				CoreFrame.this.disable();
+				new AddHaircut(CoreFrame.this).setVisible(true);
+				
+			}
+		});
 		JLabel lbl1 = new JLabel("Add Haircut", SwingConstants.CENTER);
-		lbl1.setFont(new Font("serif", Font.PLAIN, 18));
+		lbl1.setFont(new Font("Arial", Font.PLAIN, 24));
 		btn1.add(lbl1, BorderLayout.CENTER);
+		
 		
 		JPanel btn2 = new JPanel(new BorderLayout());
 		btn2.setBackground(new Color(230,230,230));
+		btn2.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
+		btn2.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {btn2.setBackground(new Color(230, 230, 230));}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {btn2.setBackground(new Color(200, 200, 200));}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				System.out.println("Clicked BTN_2");
+			}
+		});
+		
 		JLabel lbl2 = new JLabel("Add Customer", SwingConstants.CENTER);
-		lbl2.setFont(new Font("serif", Font.PLAIN, 18));
+		lbl2.setFont(new Font("Arial", Font.PLAIN, 24));
 		btn2.add(lbl2, BorderLayout.CENTER);
+		
 		
 		JPanel btn3 = new JPanel(new BorderLayout());
 		btn3.setBackground(new Color(230,230,230));
+		btn3.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
+		btn3.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {btn3.setBackground(new Color(230, 230, 230));}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {btn3.setBackground(new Color(200, 200, 200));}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				System.out.println("Clicked BTN_3");
+			}
+		});
 		JLabel lbl3 = new JLabel("View Customers", SwingConstants.CENTER);
-		lbl3.setFont(new Font("serif", Font.PLAIN, 18));
+		lbl3.setFont(new Font("Arial", Font.PLAIN, 24));
 		btn3.add(lbl3, BorderLayout.CENTER);
+		
 		
 		JPanel btn4 = new JPanel(new BorderLayout());
 		btn4.setBackground(new Color(230,230,230));
+		btn4.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
+		btn4.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {btn4.setBackground(new Color(230, 230, 230));}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {btn4.setBackground(new Color(200, 200, 200));}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				System.out.println("Clicked BTN_4");
+			}
+		});
 		JLabel lbl4 = new JLabel("Admin", SwingConstants.CENTER);
-		lbl4.setFont(new Font("serif", Font.PLAIN, 18));
+		lbl4.setFont(new Font("Arial", Font.PLAIN, 24));
 		btn4.add(lbl4, BorderLayout.CENTER);
 
 		
@@ -124,9 +210,7 @@ public class CoreFrame extends AdvancedFrame {
 	}
 
 	@Override
-	public void minimiseAction() {
-//		setState ( NORMAL );
-	}
+	public void minimiseAction() {}
 
 	@Override
 	public void openAction() {}
