@@ -56,16 +56,6 @@ public class Launcher {
 		db.testDBTables();
 		db.initDefaultTables();
 		
-		db.listCustomerTypes();
-		db.listHaircutTypes();
-		
-//		Customer customer = new Customer();
-//		customer.setFirstName("John");
-//		customer.setLastName("Barclay");
-//		customer = db.addCustomer(customer);
-		
-		db.listCustomers();
-		
 		// Launch home screen
 		new CoreFrame().setVisible(true);
 	}
