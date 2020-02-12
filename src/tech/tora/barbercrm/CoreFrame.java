@@ -74,11 +74,8 @@ public class CoreFrame extends AdvancedFrame {
 			
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				System.out.println("Clicked BTN_1");
-				
-				CoreFrame.this.disable();
+				CoreFrame.this.setEnabled(false);
 				new AddHaircut(CoreFrame.this).setVisible(true);
-				
 			}
 		});
 		JLabel lbl1 = new JLabel("Add Haircut", SwingConstants.CENTER);
@@ -207,6 +204,7 @@ public class CoreFrame extends AdvancedFrame {
 	@Override
 	public void closeAction() {
 		this.dispose();
+		System.exit(0);
 	}
 
 	@Override

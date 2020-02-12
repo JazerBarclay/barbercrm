@@ -5,9 +5,7 @@ import java.sql.SQLException;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-import jdk.jfr.internal.LogLevel;
 import tech.tora.barbercrm.db.CompanyDB;
-import tech.tora.barbercrm.widgets.Customer;
 import tech.tora.tools.system.Logging;
 
 public class Launcher {
