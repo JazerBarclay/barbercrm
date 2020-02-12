@@ -21,7 +21,7 @@ public class CompanyDB {
 	 * @author Jazer
 	 */
 	public CompanyDB() {
-//		db = openDB(companyName+"DB");
+
 	}
 
 	/**
@@ -156,9 +156,6 @@ public class CompanyDB {
 		Customer customer = null;
 		try {
 			ResultSet res = db.select("SELECT * FROM customers WHERE customer_id = " + customerID + "");
-			ResultSetMetaData rs = res.getMetaData();
-
-			int colCount = rs.getColumnCount();
 
 			customer = new Customer();
 
@@ -212,11 +209,11 @@ public class CompanyDB {
 	 */
 	public void testDBTables() {
 		try {
-			System.out.println("// Generating CUSTOMERS table...");
+//			System.out.println("// Generating CUSTOMERS table...");
 			db.createTable("CREATE TABLE customers(customer_id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), first_name varchar(30), last_name varchar(30))");
 		} catch (SQLException e) {
 			if( ((SQLException)e).getSQLState().contentEquals("X0Y32") ) {
-				System.out.println("// Table CUSTOMERS exists...");
+//				System.out.println("// Table CUSTOMERS exists...");
 			} else {
 				System.err.println("// Failed to create table HAIRCUT_TYPE");
 				e.printStackTrace();
@@ -226,11 +223,11 @@ public class CompanyDB {
 		}
 
 		try {
-			System.out.println("// Generating HAIRCUT_TYPES table...");
+//			System.out.println("// Generating HAIRCUT_TYPES table...");
 			db.createTable("CREATE TABLE haircut_types(haircut_type_id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), haircut_type_name varchar(20))");
 		} catch (SQLException e) {
 			if( ((SQLException)e).getSQLState().contentEquals("X0Y32") ) {
-				System.out.println("// Table HAIRCUT_TYPES exists...");
+//				System.out.println("// Table HAIRCUT_TYPES exists...");
 			} else {
 				System.err.println("// Failed to create table HAIRCUT_TYPES");
 				e.printStackTrace();
@@ -241,11 +238,11 @@ public class CompanyDB {
 
 
 		try {
-			System.out.println("// Generating CUSTOMER_TYPES table...");
+//			System.out.println("// Generating CUSTOMER_TYPES table...");
 			db.createTable("CREATE TABLE customer_types(customer_type_id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), customer_type_name varchar(20))");
 		} catch (SQLException e) {
 			if( ((SQLException)e).getSQLState().contentEquals("X0Y32") ) {
-				System.out.println("// Table CUSTOMER_TYPES exists...");
+//				System.out.println("// Table CUSTOMER_TYPES exists...");
 			} else {
 				System.err.println("// Failed to create table HAIRCUT_TYPES");
 				e.printStackTrace();
@@ -256,11 +253,11 @@ public class CompanyDB {
 
 
 		try {
-			System.out.println("// Generating HAIRCUTS table...");
+//			System.out.println("// Generating HAIRCUTS table...");
 			db.createTable("CREATE TABLE haircuts(haircut_id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), customer_fid INTEGER, haircut_type_fid INTEGER, haircut_timestamp INTEGER)");
 		} catch (SQLException e) {
 			if( ((SQLException)e).getSQLState().contentEquals("X0Y32") ) {
-				System.out.println("// Table HAIRCUTS exists...");
+//				System.out.println("// Table HAIRCUTS exists...");
 			} else {
 				System.err.println("// Failed to create table HAIRCUTS");
 				e.printStackTrace();
