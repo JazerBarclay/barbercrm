@@ -110,4 +110,9 @@ public class Customer {
 		this.active = active;
 	}
 	
+	@Override
+	public String toString() {
+		return firstName + " " + lastName;
+	}
+	
 }

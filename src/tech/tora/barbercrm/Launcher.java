@@ -53,6 +53,11 @@ public class Launcher {
 		
 		db.testDBTables();
 		db.initDefaultTables();
+		try {
+			db.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
 		// Launch home screen
 		new CoreFrame().setVisible(true);

@@ -19,6 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import tech.tora.barbercrm.screens.AddCustomer;
 import tech.tora.barbercrm.screens.AddHaircut;
 import tech.tora.tools.swing.frame.AdvancedFrame;
 
@@ -102,7 +103,8 @@ public class CoreFrame extends AdvancedFrame {
 			
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				System.out.println("Clicked BTN_2");
+				CoreFrame.this.setEnabled(false);
+				new AddCustomer(CoreFrame.this).setVisible(true);
 			}
 		});
 		

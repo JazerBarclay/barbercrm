@@ -3,6 +3,8 @@ package tech.tora.barbercrm.db;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Map;
 
 import tech.tora.barbercrm.widgets.Customer;
 import tech.tora.barbercrm.widgets.CustomerType;
@@ -128,6 +130,60 @@ public class CompanyDB {
 	/**
 	 * Prints all customer types to terminal
 	 */
+	public ArrayList<Customer> getCustomers() {
+		try {
+			ResultSet res = db.select("SELECT * FROM customers");
+
+			ArrayList<Customer> list = new ArrayList<Customer>();
+			Customer customer;
+			
+			while (res.next()) {
+				customer = new Customer();
+				customer.setID(Integer.parseInt(res.getString(1)));
+				customer.setFirstName(res.getString(2));
+				customer.setLastName(res.getString(3));
+				list.add(customer);
+			}
+			
+			return list;
+			
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+		return new ArrayList<Customer>();
+		
+	}
+
+	/**
+	 * Prints all customer types to terminal
+	 */
+	public ArrayList<Customer> findCustomers(String name) {
+		try {
+			ResultSet res = db.select("SELECT * FROM customers WHERE first_name LIKE '"+name+"' OR last_name LIKE '"+name+"'");
+
+			ArrayList<Customer> list = new ArrayList<Customer>();
+			Customer customer;
+			
+			while (res.next()) {
+				customer = new Customer();
+				customer.setID(Integer.parseInt(res.getString(1)));
+				customer.setFirstName(res.getString(2));
+				customer.setLastName(res.getString(3));
+				list.add(customer);
+			}
+			
+			return list;
+			
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+		return new ArrayList<Customer>();
+		
+	}
+
+	/**
+	 * Prints all customer types to terminal
+	 */
 	public void listCustomers() {
 		try {
 			ResultSet res = db.select("SELECT * FROM customers");
@@ -192,6 +248,14 @@ public class CompanyDB {
 		database = new DerbyDB(companyName + "DB");
 		db = database;
 		return database;
+	}
+	
+	/**
+	 * Closes the database connection safely
+	 * @throws SQLException 
+	 */
+	public void close() throws SQLException {
+		db.close();
 	}
 
 	/**
