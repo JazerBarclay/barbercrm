@@ -16,7 +16,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -27,11 +26,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-import javax.swing.event.ListDataListener;
-
 import tech.tora.barbercrm.db.CompanyDB;
 import tech.tora.barbercrm.widgets.Customer;
-import tech.tora.barbercrm.widgets.CustomerType;
 import tech.tora.barbercrm.widgets.HaircutType;
 import tech.tora.tools.swing.frame.AdvancedFrame;
 import tech.tora.tools.system.Logging;
@@ -39,9 +35,6 @@ import tech.tora.tools.system.Logging;
 public class AddHaircut extends AdvancedFrame {
 
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	private Font txtFont = new Font("Arial", Font.PLAIN, 16);
@@ -74,7 +67,7 @@ public class AddHaircut extends AdvancedFrame {
 			ex.printStackTrace();
 		}
 
-		customersList = db.getCustomers();
+		customersList = db.getAllCustomers();
 
 		try {
 			db.close();
@@ -219,6 +212,13 @@ public class AddHaircut extends AdvancedFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				System.out.println("Save Clicked");
+				System.out.println(""+System.currentTimeMillis());
+				try { 
+					System.out.println(""+((Customer)customercmb.getSelectedItem()).getID());
+				} catch (ClassCastException ex) {
+					System.err.println("ERR");
+				}
+				
 			}
 		});
 		botPanel.add(btnSave, BorderLayout.EAST);
@@ -232,9 +232,9 @@ public class AddHaircut extends AdvancedFrame {
 
 	@Override
 	public void closeAction() {
-		this.dispose();
 		parentFrame.setEnabled(true);
 		parentFrame.requestFocus();
+		this.dispose();
 	}
 
 	@Override
