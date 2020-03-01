@@ -41,7 +41,6 @@ public class DerbyDB {
 	public ResultSet select(String selectSQL) throws ClassNotFoundException, SQLException {
 		statement = conn.createStatement();
 		ResultSet res = statement.executeQuery(selectSQL);
-		//		ResultSetMetaData rs = res.getMetaData();
 		return res;
 	}
 
