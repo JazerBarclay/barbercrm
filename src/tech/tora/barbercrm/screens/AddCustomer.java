@@ -251,6 +251,8 @@ public class AddCustomer extends AdvancedFrame {
 		setContentPane(rootPane);
 		setLocationRelativeTo(null);
 		setResizable(false);
+		
+		setType(javax.swing.JFrame.Type.UTILITY);
 	}
 	
 	@Override
@@ -273,6 +275,8 @@ public class AddCustomer extends AdvancedFrame {
 	public void gainFocusAction() {}
 
 	@Override
-	public void loseFocusAction() {}
+	public void loseFocusAction() {
+		AddCustomer.this.requestFocus();
+	}
 	
 }

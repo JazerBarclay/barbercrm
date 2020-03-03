@@ -16,7 +16,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -27,11 +26,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-import javax.swing.event.ListDataListener;
-
 import tech.tora.barbercrm.db.CompanyDB;
 import tech.tora.barbercrm.widgets.Customer;
-import tech.tora.barbercrm.widgets.CustomerType;
 import tech.tora.barbercrm.widgets.HaircutType;
 import tech.tora.tools.swing.frame.AdvancedFrame;
 import tech.tora.tools.system.Logging;
@@ -136,11 +132,11 @@ public class AddHaircut extends AdvancedFrame {
 		customercmb.setEditable(true);
 		
 		((JTextField) customercmb.getEditor().getEditorComponent()).setText("");
-
+		
 		customercmb.getEditor().getEditorComponent().addKeyListener(new KeyListener() {
 
 			@Override
-			public void keyTyped(KeyEvent e) {
+			public void keyPressed(KeyEvent e) {
 				String value = customercmb.getEditor().getItem().toString();
 
 				ArrayList<Customer> filtered = new ArrayList<Customer>();
@@ -155,16 +151,18 @@ public class AddHaircut extends AdvancedFrame {
 					model.removeAllElements();
 					for (Customer s: filtered) model.addElement(s);
 
+					customercmb.showPopup();
+
 					JTextField textfield = (JTextField) customercmb.getEditor().getEditorComponent();
 					textfield.setText(value);
 				}
-				customercmb.showPopup();
+				
 			}
 
 			@Override
 			public void keyReleased(KeyEvent e) {}
 			@Override
-			public void keyPressed(KeyEvent e) {}
+			public void keyTyped(KeyEvent e) {}
 		});
 
 		haircutTypecmb = new JComboBox<HaircutType>(HaircutType.values());
@@ -172,7 +170,7 @@ public class AddHaircut extends AdvancedFrame {
 
 
 		// Padding
-		c.insets = new Insets(5,5,5,5); 
+		c.insets = new Insets(5,5,5,5);
 		c.fill = GridBagConstraints.HORIZONTAL;
 
 		double lblWeight = 0.1;
@@ -218,7 +216,11 @@ public class AddHaircut extends AdvancedFrame {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				System.out.println("Save Clicked");
+				try {
+					System.out.println(((Customer)customercmb.getSelectedItem()).getID());
+				} catch (ClassCastException cce) {
+//					System.err.println(cce.getMessage());
+				}
 			}
 		});
 		botPanel.add(btnSave, BorderLayout.EAST);
@@ -228,6 +230,9 @@ public class AddHaircut extends AdvancedFrame {
 		setContentPane(rootPane);
 		setLocationRelativeTo(null);
 		setResizable(true);
+		
+		setType(javax.swing.JFrame.Type.UTILITY);
+
 	}
 
 	@Override
@@ -250,6 +255,8 @@ public class AddHaircut extends AdvancedFrame {
 	public void gainFocusAction() {}
 
 	@Override
-	public void loseFocusAction() {}
+	public void loseFocusAction() {
+		AddHaircut.this.requestFocus();
+	}
 
 }
