@@ -35,9 +35,6 @@ import tech.tora.tools.system.Logging;
 public class AddHaircut extends AdvancedFrame {
 
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	private Font txtFont = new Font("Arial", Font.PLAIN, 16);
@@ -70,7 +67,7 @@ public class AddHaircut extends AdvancedFrame {
 			ex.printStackTrace();
 		}
 
-		customersList = db.getCustomers();
+		customersList = db.getAllCustomers();
 
 		try {
 			db.close();
@@ -216,11 +213,15 @@ public class AddHaircut extends AdvancedFrame {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				try {
-					System.out.println(((Customer)customercmb.getSelectedItem()).getID());
-				} catch (ClassCastException cce) {
-//					System.err.println(cce.getMessage());
+
+				System.out.println("Save Clicked");
+				System.out.println(""+System.currentTimeMillis());
+				try { 
+					System.out.println(""+((Customer)customercmb.getSelectedItem()).getID());
+				} catch (ClassCastException ex) {
+					System.err.println("ERR");
 				}
+				
 			}
 		});
 		botPanel.add(btnSave, BorderLayout.EAST);
@@ -237,9 +238,9 @@ public class AddHaircut extends AdvancedFrame {
 
 	@Override
 	public void closeAction() {
-		this.dispose();
 		parentFrame.setEnabled(true);
 		parentFrame.requestFocus();
+		this.dispose();
 	}
 
 	@Override

@@ -28,15 +28,7 @@ public class Launcher {
 		System.setProperty("apple.laf.useScreenMenuBar", "true");
 	}
 	
-	
-	public Launcher() {
-		
-		if (System.getProperty("os.name").contains("Mac")) initMac();
-		
-		if (!initLookAndFeel()) {
-			System.err.println("Failed look and feel in Launcher.java");
-			System.exit(1);
-		}
+	private void testDB() {
 		
 		// Connect to db and test all tables and fields
 		CompanyDB db = new CompanyDB();
@@ -58,6 +50,19 @@ public class Launcher {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
+	}
+	
+	public Launcher() {
+		
+		if (System.getProperty("os.name").contains("Mac")) initMac();
+		
+		if (!initLookAndFeel()) {
+			System.err.println("Failed look and feel in Launcher.java");
+			System.exit(1);
+		}
+
+		testDB();
 		
 		// Launch home screen
 		new CoreFrame().setVisible(true);

@@ -3,7 +3,6 @@ package tech.tora.tools.database;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
-//import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -41,7 +40,6 @@ public class DerbyDB {
 	public ResultSet select(String selectSQL) throws ClassNotFoundException, SQLException {
 		statement = conn.createStatement();
 		ResultSet res = statement.executeQuery(selectSQL);
-		//		ResultSetMetaData rs = res.getMetaData();
 		return res;
 	}
 

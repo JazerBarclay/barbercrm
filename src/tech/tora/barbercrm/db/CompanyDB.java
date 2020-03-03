@@ -4,8 +4,6 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Map;
-
 import tech.tora.barbercrm.widgets.Customer;
 import tech.tora.barbercrm.widgets.CustomerType;
 import tech.tora.barbercrm.widgets.HaircutType;
@@ -26,6 +24,7 @@ public class CompanyDB {
 
 	}
 
+	
 	/**
 	 * Insert haircut type record into database
 	 * @param type - Haircut Type Name
@@ -130,7 +129,7 @@ public class CompanyDB {
 	/**
 	 * Prints all customer types to terminal
 	 */
-	public ArrayList<Customer> getCustomers() {
+	public ArrayList<Customer> getAllCustomers() {
 		try {
 			ResultSet res = db.select("SELECT * FROM customers");
 
@@ -157,7 +156,7 @@ public class CompanyDB {
 	/**
 	 * Prints all customer types to terminal
 	 */
-	public ArrayList<Customer> findCustomers(String name) {
+	public ArrayList<Customer> searchCustomers(String name) {
 		try {
 			ResultSet res = db.select("SELECT * FROM customers WHERE first_name LIKE '"+name+"' OR last_name LIKE '"+name+"'");
 
@@ -184,7 +183,7 @@ public class CompanyDB {
 	/**
 	 * Prints all customer types to terminal
 	 */
-	public void listCustomers() {
+	public void printCustomers() {
 		try {
 			ResultSet res = db.select("SELECT * FROM customers");
 			ResultSetMetaData rs = res.getMetaData();
@@ -229,6 +228,13 @@ public class CompanyDB {
 
 	public void removeCustomer(Customer customer) {
 		int customerID = customer.getID();
+		try {
+			db.insert("DELETE FROM customers WHERE customer_id="+customerID+")");
+			System.out.println("// Removed customer " + customer.getFirstName() + " " + customer.getLastName());
+		} catch (ClassNotFoundException | SQLException e) {
+			System.err.println("// Failed to remove customer " + customer.getFirstName() + " " + customer.getLastName());
+			e.printStackTrace();
+		}
 	}
 
 
