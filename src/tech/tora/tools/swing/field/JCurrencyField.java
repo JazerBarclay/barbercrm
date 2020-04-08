@@ -37,7 +37,7 @@ public class JCurrencyField extends JTextField {
 				if (text.length() <= 2) {
 					text = (text+"p");
 				} else {
-					text = ("Â£" + text.substring(0, text.length()-2) + "." + text.substring(text.length()-2, text.length()));
+					text = ("£" + text.substring(0, text.length()-2) + "." + text.substring(text.length()-2, text.length()));
 				}
 
 				// If you are left with a "p" after all this, remove the "p"
