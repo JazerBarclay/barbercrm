@@ -6,6 +6,7 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import tech.tora.barbercrm.db.CompanyDB;
+import tech.tora.barbercrm.views.CoreFrame;
 import tech.tora.tools.system.Logging;
 
 public class Launcher {

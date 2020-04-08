@@ -1,4 +1,4 @@
-package tech.tora.barbercrm.widgets;
+package tech.tora.barbercrm.dao;
 
 /* PLEASE NOTE : DATABASE POPULATES VALUES BASED ON THESE ENUMS */
 /* ADD NEW VALUES IN SEQUENTIAL ORDER TO PRESERVE DB ID VALUES  */

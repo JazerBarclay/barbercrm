@@ -1,4 +1,4 @@
-package tech.tora.barbercrm.widgets;
+package tech.tora.barbercrm.dao;
 
 public class Haircut {
 

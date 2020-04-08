@@ -4,9 +4,10 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import tech.tora.barbercrm.widgets.Customer;
-import tech.tora.barbercrm.widgets.CustomerType;
-import tech.tora.barbercrm.widgets.HaircutType;
+
+import tech.tora.barbercrm.dao.Customer;
+import tech.tora.barbercrm.dao.CustomerType;
+import tech.tora.barbercrm.dao.HaircutType;
 import tech.tora.tools.database.DerbyDB;
 
 public class CompanyDB {

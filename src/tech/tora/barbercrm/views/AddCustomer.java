@@ -1,4 +1,4 @@
-package tech.tora.barbercrm.screens;
+package tech.tora.barbercrm.views;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -22,9 +22,9 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import tech.tora.barbercrm.dao.Customer;
+import tech.tora.barbercrm.dao.CustomerType;
 import tech.tora.barbercrm.db.CompanyDB;
-import tech.tora.barbercrm.widgets.Customer;
-import tech.tora.barbercrm.widgets.CustomerType;
 import tech.tora.tools.swing.frame.AdvancedFrame;
 import tech.tora.tools.system.Logging;
 

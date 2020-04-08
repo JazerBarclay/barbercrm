@@ -1,4 +1,4 @@
-package tech.tora.barbercrm.screens;
+package tech.tora.barbercrm.views;
 
 import javax.swing.JFrame;
 

@@ -1,4 +1,4 @@
-package tech.tora.barbercrm;
+package tech.tora.barbercrm.views;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -19,8 +19,6 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-import tech.tora.barbercrm.screens.AddCustomer;
-import tech.tora.barbercrm.screens.AddHaircut;
 import tech.tora.tools.swing.frame.AdvancedFrame;
 
 public class CoreFrame extends AdvancedFrame {
